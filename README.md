@@ -134,9 +134,7 @@ This documentation is provided for educational and informational purposes only. 
 **Important Notice:**
 - This guidance is provided "as-is" without warranty of any kind, either express or implied
 - Users are solely responsible for testing, validating, and implementing these procedures in their own environments
-- The author assumes no liability for any damages, data loss, service disruptions, or security incidents that may result from the use or misuse of this documentation
 - Always conduct thorough testing in non-production environments before implementing changes in production systems
-- Consult with qualified Azure architects and security professionals for production deployments
 - Verify all configurations against your organization's specific security policies and compliance requirements
 
 By using this documentation, you acknowledge and agree that you do so at your own risk and that the author shall not be held liable for any consequences arising from its use.
