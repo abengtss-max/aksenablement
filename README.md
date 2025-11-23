@@ -1,4 +1,4 @@
-# AKS Enablement: Private Cluster Migration Guide
+# AKS Enablement
 
 This repository contains comprehensive documentation for migrating Azure Kubernetes Service (AKS) clusters from public to private configurations, including governance policies, detailed migration procedures, and operational best practices.
 
