@@ -127,6 +127,22 @@ All documentation follows Microsoft's official AKS best practices:
 
 ---
 
+## ⚠️ Disclaimer
+
+This documentation is provided for educational and informational purposes only. While every effort has been made to ensure accuracy and adherence to Microsoft Azure best practices, the author makes no warranties or representations regarding the completeness, accuracy, or suitability of this content for any particular purpose.
+
+**Important Notice:**
+- This guidance is provided "as-is" without warranty of any kind, either express or implied
+- Users are solely responsible for testing, validating, and implementing these procedures in their own environments
+- The author assumes no liability for any damages, data loss, service disruptions, or security incidents that may result from the use or misuse of this documentation
+- Always conduct thorough testing in non-production environments before implementing changes in production systems
+- Consult with qualified Azure architects and security professionals for production deployments
+- Verify all configurations against your organization's specific security policies and compliance requirements
+
+By using this documentation, you acknowledge and agree that you do so at your own risk and that the author shall not be held liable for any consequences arising from its use.
+
+---
+
 ## 📝 License
 
 This documentation is provided as-is for Azure enablement purposes.
