@@ -79,13 +79,13 @@ This deployment guide is part of the private AKS documentation set:
 
 ### 1.1 Purpose
 
-This Standard Operating Procedure (SOP) provides step-by-step instructions for deploying a production-ready private Azure Kubernetes Service (AKS) cluster using a hub-spoke network architecture with Azure Firewall for egress traffic control.
+This Standard Operating Procedure (SOP) provides step-by-step instructions for deploying an enterprise-grade private Azure Kubernetes Service (AKS) cluster using a hub-spoke network architecture with Azure Firewall for egress traffic control.
 
 ### 1.2 Scope
 
 This document covers:
 - Hub-spoke network topology with VNet peering
-- Private AKS cluster with no public endpoint
+- Private AKS cluster with private API endpoint only
 - Azure Firewall for egress traffic inspection
 - Private Azure Container Registry with private endpoints
 - Azure Bastion for secure remote access (no jumpbox VMs required)

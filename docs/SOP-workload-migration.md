@@ -82,7 +82,7 @@ This SOP provides step-by-step instructions for migrating application workloads 
 ```
 
 **Benefits**:
-- ✅ Zero data loss - stateful resources exported/imported
+- ✅ Designed for data preservation - stateful resources exported/imported
 - ✅ Minimal downtime - DNS/traffic cutover only
 - ✅ Fast rollback - revert DNS if issues occur
 - ✅ Parallel testing - validate green before cutover
@@ -477,7 +477,7 @@ cat migration/dns-records.txt
 
 ## Phase 3: Build New Private AKS Cluster
 
-**⚠️ Before Building**: Ensure Azure policies from the **[Policy Guide](Azure-Policy-Guide.md)** are deployed at the management group or subscription level. This prevents accidental creation of non-compliant resources.
+**⚠️ Before Building**: Ensure Azure policies from the **[Policy Guide](Azure-Policy-Guide.md)** are deployed at the management group or subscription level. This helps prevent accidental creation of non-compliant resources.
 
 **Build your new private cluster**:
 

@@ -359,7 +359,7 @@ az policy assignment create \
 az policy definition create \
   --name "require-aks-azure-cni" \
   --display-name "Require AKS Azure CNI Networking" \
-  --description "Ensures AKS clusters use Azure CNI networking" \
+  --description "Requires AKS clusters to use Azure CNI networking" \
   --rules @policy-aks-azure-cni.json \
   --mode Indexed \
   --management-group <your-management-group-name>
@@ -383,7 +383,7 @@ az policy assignment create \
 
 **Policy Name**: `Azure Policy Add-on for Kubernetes service (AKS) should be installed and enabled`
 
-**Purpose**: Ensures policy enforcement capability exists on all clusters
+**Purpose**: Enables policy enforcement capability on all clusters
 
 **Built-in Policy**: `Azure Policy Add-on for Kubernetes service (AKS) should be installed and enabled on your clusters`  
 **Policy ID**: `/providers/Microsoft.Authorization/policyDefinitions/0a15ec92-a229-4763-bb14-0ea34a568f8d`
@@ -664,7 +664,7 @@ az policy assignment create \
 az policy definition create \
   --name "require-aks-standard-tier" \
   --display-name "Require AKS Standard Tier" \
-  --description "Ensures AKS clusters use Standard tier for production SLA" \
+  --description "Requires AKS clusters to use Standard tier for production SLA" \
   --rules @policy-aks-standard-tier.json \
   --mode Indexed \
   --management-group <your-management-group-name>
@@ -899,7 +899,7 @@ EOF
 az policy set-definition create \
   --name "private-aks-baseline" \
   --display-name "Private AKS Baseline" \
-  --description "Enforces private AKS clusters with secure networking" \
+  --description "Policy initiative for private AKS clusters with secure networking" \
   --definitions @aks-private-initiative.json \
   --management-group <your-management-group-name>
 

@@ -90,7 +90,7 @@ This guidance implements a secure hub-spoke network architecture:
 - **Hub VNet** (10.0.0.0/22): Azure Firewall, Azure Bastion, DNS resolution
 - **Spoke VNet** (10.100.0.0/20): Private AKS cluster, private endpoints for ACR/Key Vault
 - **Security**: Network Security Groups, User-Defined Routes, Azure Policy
-- **Connectivity**: VNet peering, private DNS zones, no public endpoints
+- **Connectivity**: VNet peering, private DNS zones, private endpoints only
 
 ---
 
@@ -109,7 +109,7 @@ docs/
 
 ## 🔐 Security Highlights
 
-- ✅ Private AKS clusters (no public API endpoints)
+- ✅ Private AKS clusters with private API endpoints only
 - ✅ Private endpoints for ACR and Key Vault
 - ✅ Workload identity for Azure service authentication
 - ✅ Azure Policy enforcement for compliance

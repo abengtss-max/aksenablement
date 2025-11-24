@@ -798,7 +798,7 @@ Current Version: {{ Current K8s Version }}
 Target Version: {{ Target K8s Version }}
 Scheduled Date: {{ Upgrade Date }}
 Maintenance Window: {{ Start Time }} - {{ End Time }} ({{ Timezone }})
-Expected Downtime: {{ Downtime Estimate or "Zero downtime expected" }}
+Expected Downtime: {{ Downtime Estimate or "Minimal downtime expected" }}
 
 Pre-Upgrade Checklist:
 ☐ Review Kubernetes {{ Target Version }} release notes
@@ -838,7 +838,7 @@ Next Expected Upgrade: {{ Estimated Date Range }}
 What This Means:
 - Cluster will automatically upgrade to {{ Channel Description }}
 - Upgrades occur only during configured maintenance windows
-- Azure will notify 48 hours before scheduled upgrade
+- Azure typically notifies 48 hours before scheduled upgrade
 
 Application Team Actions Required:
 ☐ Ensure your applications are compatible with N-1 Kubernetes versions

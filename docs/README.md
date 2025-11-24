@@ -16,7 +16,7 @@ Follow this logical sequence for successful private AKS implementation:
 - Management group deployment procedures
 - Phased enforcement (Audit → Deny mode)
 
-**Why first?** Policies prevent misconfiguration during deployment.
+**Why first?** Policies help prevent misconfiguration during deployment.
 
 ---
 
@@ -29,7 +29,7 @@ Follow this logical sequence for successful private AKS implementation:
 - Private endpoints for ACR and Key Vault
 - Complete validation checklist
 
-**Outcome:** Production-ready private AKS cluster with zero internet exposure.
+**Outcome:** Enterprise-grade private AKS cluster designed for minimal internet exposure.
 
 ---
 
@@ -42,7 +42,7 @@ Follow this logical sequence for successful private AKS implementation:
 - Comprehensive rollback procedures (3 scenarios)
 - Pre-migration assessment scripts
 
-**Outcome:** Zero-downtime migration with validated rollback options.
+**Outcome:** Migration strategy designed to minimize downtime with validated rollback options.
 
 ---
 
@@ -95,7 +95,7 @@ Follow this logical sequence for successful private AKS implementation:
 
 ### Deployment Order
 For new private AKS deployments:
-1. **Deploy policies FIRST** → Prevent non-compliant resources
+1. **Deploy policies FIRST** → Help prevent non-compliant resources
 2. **Provision cluster** → Automated compliance enforcement
 3. **Deploy applications** → Workloads inherit governance
 
