@@ -10,8 +10,8 @@ This enablement package provides enterprise-ready guidance for deploying and man
 
 - **[Start Here: Documentation Hub](docs/README.md)** - Main documentation landing page
 - **[Azure Policy Guide](docs/Azure-Policy-Guide.md)** - Governance and compliance policies
-- **[Migration SOP](docs/SOP-workload-migration.md)** - Migrate from public to private AKS
 - **[Private AKS Deployment](docs/SOP-provision-private-aks-cluster.md)** - Deploy new private clusters
+- **[Migration SOP](docs/SOP-workload-migration.md)** - Migrate workloads to private AKS
 - **[Upgrade Playbook](docs/AKS-Upgrade-Playbook.md)** - Post-migration operations
 
 ---

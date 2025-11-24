@@ -1,98 +1,87 @@
 # Azure Kubernetes Service (AKS) - Enterprise Enablement Guides
 
-**Project**: AKS Enterprise Enablement  
-**Version**: 1.0  
-**Date**: November 23, 2025  
-**Status**: Active  
-**Review Cycle**: Quarterly
+Comprehensive documentation for deploying and managing private AKS clusters with enterprise-grade security and governance.
 
 ---
 
-## 📚 Overview
+## 📚 Documentation Structure
 
-This documentation repository provides comprehensive guides for enterprise-grade Azure Kubernetes Service (AKS) operations. These artefacts are designed to enable your teams with production-ready procedures, governance frameworks, and operational best practices.
+Follow this logical sequence for successful private AKS implementation:
 
----
+### 1️⃣ **[Azure Policy Guide](Azure-Policy-Guide.md)** - Governance Framework
+**Deploy this FIRST** to enforce compliance before infrastructure deployment.
 
-## 🎯 Deliverables
+- 17 custom Azure policies for AKS security
+- Pod Security Baseline Initiative (13+ Microsoft policies)
+- Management group deployment procedures
+- Phased enforcement (Audit → Deny mode)
 
-### 1. **[Private AKS Cluster Deployment Guide](private-aks-cluster-guide.md)** 🔐
-
-Complete documentation set for deploying and managing production-grade private AKS clusters in hub-spoke architecture.
-
-**Includes:**
-- ✅ Step-by-step cluster provisioning (SOP)
-- ✅ Azure Policy governance framework
-- ✅ Workload migration playbook (public → private)
-- ✅ Hub-spoke networking scenarios
-
-**Use Cases:**
-- Deploy new private AKS clusters with zero-trust networking
-- Enforce governance policies at management group level
-- Migrate existing workloads from public to private clusters
-
-**📘 [→ Go to Private AKS Cluster Guide](private-aks-cluster-guide.md)**
+**Why first?** Policies prevent misconfiguration during deployment.
 
 ---
 
-### 2. **[AKS Upgrade Playbook](AKS-Upgrade-Playbook.md)** 🔄
+### 2️⃣ **[Private AKS Deployment SOP](SOP-provision-private-aks-cluster.md)** - Infrastructure Setup
+**Deploy hub-spoke architecture** with Azure Firewall, Bastion, ACR, and Key Vault.
 
-Comprehensive guide for Kubernetes version upgrades, node pool upgrades, and OS SKU migrations with governance and rollback procedures.
+- Hub-spoke network architecture (10.0.0.0/16 hub, 10.1.0.0/16 spoke)
+- Azure Firewall with FQDN egress rules
+- Azure Bastion for secure management
+- Private endpoints for ACR and Key Vault
+- Complete validation checklist
 
-**Includes:**
-- ✅ Manual and automatic upgrade strategies
-- ✅ Pre-upgrade validation checklist
-- ✅ Rollback procedures
-- ✅ Communication templates for application teams
-- ✅ Policy-driven upgrade governance
-
-**Use Cases:**
-- Plan and execute Kubernetes version upgrades (e.g., 1.28 → 1.29)
-- Upgrade node pool OS (Ubuntu 22.04 → 24.04)
-- Coordinate upgrades across multiple application teams
-- Implement automated upgrade policies with governance controls
-
-**📘 [→ Go to AKS Upgrade Playbook](AKS-Upgrade-Playbook.md)**
+**Outcome:** Production-ready private AKS cluster with zero internet exposure.
 
 ---
 
-## 🚀 Getting Started
+### 3️⃣ **[Workload Migration SOP](SOP-workload-migration.md)** - Application Migration
+**Migrate existing workloads** from public to private AKS clusters.
 
-### For New Private AKS Deployments
-1. **Start here**: [Private AKS Cluster Guide](private-aks-cluster-guide.md)
-2. **Deploy governance first**: [Azure Policy Guide](Azure-Policy-Guide.md)
-3. **Provision cluster**: [SOP - Provision Private AKS](SOP-provision-private-aks-cluster.md)
+- Blue-green deployment strategy
+- Stateless and stateful workload migration (Velero)
+- DNS cutover procedures (60-second TTL)
+- Comprehensive rollback procedures (3 scenarios)
+- Pre-migration assessment scripts
 
-### For Existing Cluster Upgrades
-1. **Start here**: [AKS Upgrade Playbook](AKS-Upgrade-Playbook.md)
-2. **Review pre-upgrade checklist**: Ensure compatibility
-3. **Follow upgrade procedures**: Manual or automated path
-
-### For Migrating Workloads to Private Clusters
-1. **Review**: [Private AKS Cluster Guide](private-aks-cluster-guide.md)
-2. **Follow migration steps**: [Workload Migration SOP](SOP-workload-migration.md)
+**Outcome:** Zero-downtime migration with validated rollback options.
 
 ---
 
-## 📋 Documentation Structure
+### 4️⃣ **[AKS Upgrade Playbook](AKS-Upgrade-Playbook.md)** - Post-Migration Operations
+**Maintain cluster security** with automated and manual upgrade strategies.
 
+- Auto-upgrade channels (`patch` recommended)
+- Pre-upgrade validation (12-check bash script)
+- Manual minor version upgrades for stateful workloads
+- Rollback procedures
+- Communication templates (7-day and 30-day notices)
+
+**Outcome:** Proactive maintenance with minimal disruption.
+
+---
+
+## 🚀 Quick Start Paths
+
+### Path A: New Private AKS Deployment
 ```
-docs/
-├── README.md (this file)                          # Main landing page
-│
-├── Private AKS Cluster Deployment
-│   ├── private-aks-cluster-guide.md              # Private AKS overview
-│   ├── SOP-provision-private-aks-cluster.md      # Step-by-step provisioning
-│   ├── Azure-Policy-Guide.md                     # Governance policies
-│   ├── SOP-workload-migration.md                 # Public → Private migration
-│   ├── SOP-scenario-existing-hub.md              # Deploy with existing hub
-│   └── SOP-scenario-standalone-hub.md            # Deploy standalone hub
-│
-└── AKS Upgrade Playbook
-    └── AKS-Upgrade-Playbook.md                   # Comprehensive upgrade guide
+1. Azure Policy Guide → Deploy governance policies
+2. Private AKS Deployment SOP → Provision infrastructure
+3. Deploy applications → Test in private environment
+4. AKS Upgrade Playbook → Configure maintenance strategy
 ```
 
----
+### Path B: Migrate Existing Public AKS
+```
+1. Azure Policy Guide → Audit existing environment
+2. Private AKS Deployment SOP → Build new private cluster
+3. Workload Migration SOP → Migrate applications
+4. AKS Upgrade Playbook → Configure maintenance strategy
+```
+
+### Path C: Upgrade Existing Private AKS
+```
+1. AKS Upgrade Playbook → Follow upgrade procedures
+2. Azure Policy Guide (optional) → Review policy compliance
+```---
 
 ## ⚠️ Important Notes
 
