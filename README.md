@@ -87,8 +87,8 @@ Before starting, ensure you have:
 
 This guidance implements a secure hub-spoke network architecture:
 
-- **Hub VNet**: Azure Firewall, Azure Bastion, DNS resolution
-- **Spoke VNet**: Private AKS cluster, private endpoints for ACR/Key Vault
+- **Hub VNet** (10.0.0.0/22): Azure Firewall, Azure Bastion, DNS resolution
+- **Spoke VNet** (10.100.0.0/20): Private AKS cluster, private endpoints for ACR/Key Vault
 - **Security**: Network Security Groups, User-Defined Routes, Azure Policy
 - **Connectivity**: VNet peering, private DNS zones, no public endpoints
 

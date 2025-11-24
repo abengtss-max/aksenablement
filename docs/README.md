@@ -23,7 +23,7 @@ Follow this logical sequence for successful private AKS implementation:
 ### 2️⃣ **[Private AKS Deployment SOP](SOP-provision-private-aks-cluster.md)** - Infrastructure Setup
 **Deploy hub-spoke architecture** with Azure Firewall, Bastion, ACR, and Key Vault.
 
-- Hub-spoke network architecture (10.0.0.0/16 hub, 10.1.0.0/16 spoke)
+- Hub-spoke network architecture (10.0.0.0/22 hub, 10.100.0.0/20 spoke)
 - Azure Firewall with FQDN egress rules
 - Azure Bastion for secure management
 - Private endpoints for ACR and Key Vault
