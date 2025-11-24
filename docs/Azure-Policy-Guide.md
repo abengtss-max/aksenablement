@@ -9,14 +9,14 @@
 
 ---
 
-**📌 [← Back to Main Documentation](private-aks-cluster-guide.md)**
+**📌 [← Back to Documentation Hub](README.md)**
 
 ---
 
 ## Related Documentation
 
 This policy guide is part of the private AKS deployment documentation set:
-- **[Private AKS Guide](private-aks-cluster-guide.md)** - Documentation overview and quick start
+- **[Documentation Hub](README.md)** - Documentation overview and quick start
 - **[Provision Private AKS Cluster](SOP-provision-private-aks-cluster.md)** - Complete deployment guide
 - **[Workload Migration](SOP-workload-migration.md)** - Migrate from public to private AKS
 

@@ -16,8 +16,8 @@
 ## Related Documentation
 
 This upgrade playbook is part of the AKS enterprise enablement documentation set:
-- **[Main Documentation Hub](README.md)** - Overview of all deliverables
-- **[Private AKS Cluster Guide](private-aks-cluster-guide.md)** - Private cluster deployment
+- **[Documentation Hub](README.md)** - Overview of all deliverables
+- **[Private AKS Deployment SOP](SOP-provision-private-aks-cluster.md)** - Private cluster deployment
 - **[Azure Policy Guide](Azure-Policy-Guide.md)** - Governance and compliance policies
 
 ---

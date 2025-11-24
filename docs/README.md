@@ -119,5 +119,5 @@ These artefacts are living documents and should be updated as Azure best practic
 ---
 
 **🎯 Ready to get started?**
-- **New private clusters**: [Private AKS Cluster Guide →](private-aks-cluster-guide.md)
+- **New private clusters**: [Private AKS Deployment SOP →](SOP-provision-private-aks-cluster.md)
 - **Upgrade existing clusters**: [AKS Upgrade Playbook →](AKS-Upgrade-Playbook.md)

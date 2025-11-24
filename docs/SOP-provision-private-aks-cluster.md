@@ -63,7 +63,7 @@
 ## Related Documentation
 
 This deployment guide is part of the private AKS documentation set:
-- **[Private AKS Guide](private-aks-cluster-guide.md)** - Documentation overview and quick start
+- **[Documentation Hub](README.md)** - Documentation overview and quick start
 - **[Azure Policy Guide](Azure-Policy-Guide.md)** - Required governance policies (deploy first)
 - **[Workload Migration](SOP-workload-migration.md)** - Migrate workloads from public to private AKS
 
