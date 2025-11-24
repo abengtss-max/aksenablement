@@ -42,12 +42,11 @@
     - [6.2 Configure Private Endpoint for ACR](#62-configure-private-endpoint-for-acr)
     - [6.3 Configure DNS for ACR](#63-configure-dns-for-acr)
     - [6.4 Attach ACR to AKS](#64-attach-acr-to-aks)
-  - [7. Connect to Private AKS via Azure Bastion](#7-connect-to-private-aks-via-azure-bastion)
-    - [7.1 Azure Bastion Tunneling Overview](#71-azure-bastion-tunneling-overview)
-    - [7.2 Install Azure CLI Bastion Extension](#72-install-azure-cli-bastion-extension)
-    - [7.3 Create Temporary Management VM](#73-create-temporary-management-vm)
-    - [7.4 Connect via Bastion Tunnel](#74-connect-via-bastion-tunnel)
-    - [7.5 Access AKS from Local Machine](#75-access-aks-from-local-machine)
+  - [7. Connect to Private AKS](#7-connect-to-private-aks)
+    - [7.1 Access Methods Overview](#71-access-methods-overview)
+    - [7.2 Option A: Using az aks command invoke (No VM Required)](#72-option-a-using-az-aks-command-invoke-no-vm-required)
+    - [7.3 Option B: Using Azure Bastion with Temporary VM](#73-option-b-using-azure-bastion-with-temporary-vm)
+    - [7.4 Recommendation](#74-recommendation)
   - [8. Validation and Testing](#8-validation-and-testing)
     - [8.1 Validate Hub Infrastructure](#81-validate-hub-infrastructure)
     - [8.2 Validate Spoke Infrastructure](#82-validate-spoke-infrastructure)
@@ -994,27 +993,66 @@ az aks update \
 
 ---
 
-## 7. Connect to Private AKS via Azure Bastion
+## 7. Connect to Private AKS
 
-### 7.1 Azure Bastion Tunneling Overview
+### 7.1 Access Methods Overview
 
-Azure Bastion tunneling allows you to connect to private AKS clusters without requiring a jumpbox VM. The Standard SKU enables native client support and SSH/RDP tunneling.
+For private AKS clusters, you have two primary access methods:
+
+**Option A: `az aks command invoke` (Recommended)**
+- No VMs required
+- Execute kubectl commands directly from your local machine
+- Uses Azure RBAC for authentication
+- Ideal for ad-hoc cluster management
+
+**Option B: Azure Bastion Tunneling**
+- Requires temporary management VM
+- Full kubectl access from within Azure network
+- Useful for prolonged administrative sessions
+
+### 7.2 Option A: Using `az aks command invoke` (No VM Required)
+
+#### 7.2.1 Run kubectl Commands Directly
+
+```bash
+# Get cluster nodes
+az aks command invoke \
+    --resource-group $SPOKE_RG \
+    --name $AKS_CLUSTER_NAME \
+    --command "kubectl get nodes"
+
+# Get all pods
+az aks command invoke \
+    --resource-group $SPOKE_RG \
+    --name $AKS_CLUSTER_NAME \
+    --command "kubectl get pods -A"
+
+# Deploy application
+az aks command invoke \
+    --resource-group $SPOKE_RG \
+    --name $AKS_CLUSTER_NAME \
+    --command "kubectl apply -f deployment.yaml" \
+    --file deployment.yaml
+```
 
 **Benefits:**
-- No jumpbox VMs to manage
-- Direct connection from your local machine
-- Leverages your existing Azure RBAC permissions
-- Secure connection through Azure Bastion
+- Zero infrastructure overhead
+- No VMs to patch or maintain
+- Commands execute securely through Azure control plane
 
-### 7.2 Install Azure CLI Bastion Extension
+### 7.3 Option B: Using Azure Bastion with Temporary VM
+
+> **Note:** Only use this option if you need interactive shell access or prolonged administrative sessions.
+
+#### 7.3.1 Install Azure CLI Bastion Extension
 
 ```bash
 az extension add --name bastion
 ```
 
-### 7.3 Create Temporary Management VM
+#### 7.3.2 Create Temporary Management VM
 
-> **Note:** This VM is only needed temporarily to establish initial connectivity. Once tunneling is configured, you can delete it.
+> **Note:** This VM is only needed temporarily. Delete it after completing administrative tasks.
 
 ```bash
 # Create VM for initial setup
@@ -1031,9 +1069,9 @@ az vm create \
     --nsg ""
 ```
 
-### 7.4 Connect via Bastion Tunnel
+#### 7.3.3 Connect via Bastion Tunnel
 
-#### 7.4.1 Get VM Private IP
+**Get VM Private IP:**
 
 ```bash
 VM_PRIVATE_IP=$(az vm show \
@@ -1046,7 +1084,7 @@ VM_PRIVATE_IP=$(az vm show \
 echo "VM Private IP: $VM_PRIVATE_IP"
 ```
 
-#### 7.4.2 Create SSH Tunnel via Bastion
+**Create SSH Tunnel via Bastion:**
 
 ```bash
 # Create tunnel (runs in background)
@@ -1060,7 +1098,7 @@ az network bastion tunnel \
 
 > **Note:** This command opens a tunnel on local port 2222. Keep this terminal window open.
 
-#### 7.4.3 Connect to VM via Tunnel
+**Connect to VM via Tunnel:**
 
 Open a **new terminal window** and connect:
 
@@ -1068,9 +1106,7 @@ Open a **new terminal window** and connect:
 ssh azureuser@127.0.0.1 -p 2222
 ```
 
-### 7.5 Access AKS from Local Machine
-
-#### 7.5.1 Install kubectl on Management VM
+#### 7.3.4 Install kubectl on Management VM
 
 Connect to the management VM and install tools:
 
@@ -1088,7 +1124,7 @@ sudo az aks install-cli
 az login
 ```
 
-#### 7.5.2 Get AKS Credentials
+#### 7.3.5 Get AKS Credentials
 
 ```bash
 # Set environment variables
@@ -1102,7 +1138,7 @@ az aks get-credentials \
     --admin
 ```
 
-#### 7.5.3 Verify AKS Access
+#### 7.3.6 Verify AKS Access
 
 ```bash
 kubectl get nodes
@@ -1120,23 +1156,9 @@ aks-userpool-87654321-vmss000001    Ready    agent   30m     v1.27.7
 aks-userpool-87654321-vmss000002    Ready    agent   30m     v1.27.7
 ```
 
-#### 7.5.4 Alternative: Direct Tunnel to AKS API
+### 7.4 Recommendation
 
-For advanced users, you can create a direct tunnel to the AKS API server:
-
-```bash
-# Get AKS API server FQDN
-AKS_FQDN=$(az aks show \
-    --resource-group $SPOKE_RG \
-    --name $AKS_CLUSTER_NAME \
-    --query privateFqdn \
-    -o tsv)
-
-echo "AKS API Server: $AKS_FQDN"
-
-# Create tunnel to AKS API (requires custom configuration)
-# Note: This is advanced and requires additional setup
-```
+**For most scenarios, use Option A (`az aks command invoke`)** as it requires no infrastructure and provides secure, direct access to your private AKS cluster. Only use Option B if you need prolonged interactive shell sessions.
 
 ---
 
