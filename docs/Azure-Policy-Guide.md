@@ -503,34 +503,7 @@ az policy assignment create \
 
 ---
 
-### 10. Authorized IP Ranges for API Server
-
-**Policy Name**: `Authorized IP ranges should be defined on Kubernetes Services`
-
-**Purpose**: Restrict API server access to known IP ranges
-
-**Built-in Policy**: `Authorized IP ranges should be defined on Kubernetes Services`  
-**Policy ID**: `/providers/Microsoft.Authorization/policyDefinitions/0e246bcf-5f6f-4f87-bc6f-775d4712c7ea`
-
-**Effect**: `Audit` (optional for private clusters, required for non-private)
-
-**Assignment**:
-```bash
-az policy assignment create \
-  --name "require-api-authorized-ips" \
-  --display-name "Require Authorized IP Ranges for API Server" \
-  --policy "/providers/Microsoft.Authorization/policyDefinitions/0e246bcf-5f6f-4f87-bc6f-775d4712c7ea" \
-  --scope "/providers/Microsoft.Management/managementGroups/<your-management-group-name>" \
-  --params '{
-    "effect": {
-      "value": "Audit"
-    }
-  }'
-```
-
----
-
-### 11. Microsoft Defender for Containers
+### 10. Microsoft Defender for Containers
 
 **Policy Name**: `Azure Defender for Kubernetes should be enabled`
 
@@ -557,7 +530,7 @@ az policy assignment create \
 
 ---
 
-### 12. Kubernetes Version Currency
+### 11. Kubernetes Version Currency
 
 **Policy Name**: `Kubernetes Services should be upgraded to a non-vulnerable Kubernetes version`
 
@@ -584,7 +557,7 @@ az policy assignment create \
 
 ---
 
-### 13. Require AKS Managed Identity (No Service Principals)
+### 12. Require AKS Managed Identity (No Service Principals)
 
 **Policy Name**: `Kubernetes clusters should use managed identities`
 
@@ -611,7 +584,7 @@ az policy assignment create \
 
 ---
 
-### 14. Enforce AKS Standard Tier (Production SLA)
+### 13. Enforce AKS Standard Tier (Production SLA)
 
 **Policy Name**: `Azure Kubernetes Service clusters should use Standard tier`
 
@@ -684,7 +657,7 @@ az policy assignment create \
 
 ---
 
-### 15. Enforce AKS Availability Zones
+### 14. Enforce AKS Availability Zones
 
 **Policy Name**: `Azure Kubernetes Service clusters should use availability zones`
 
@@ -743,7 +716,7 @@ az policy assignment create \
 
 ---
 
-### 16. Require Azure Monitor for AKS
+### 15. Require Azure Monitor for AKS
 
 **Policy Name**: `Azure Monitor addon should be enabled on Azure Kubernetes Service`
 
@@ -770,7 +743,7 @@ az policy assignment create \
 
 ---
 
-### 17. Enforce ACR SKU (Premium for Private Endpoints)
+### 16. Enforce ACR SKU (Premium for Private Endpoints)
 
 **Policy Name**: `Container registries should use Premium SKU for private endpoints`
 

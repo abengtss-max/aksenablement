@@ -24,7 +24,7 @@ This enablement package provides enterprise-ready guidance for deploying and man
 Comprehensive Azure Policy definitions to enforce private AKS clusters and secure Azure services across your environment.
 
 **Includes**:
-- 17 custom policies for AKS security and governance
+- 16 custom policies for AKS security and governance
 - Microsoft's Pod Security Baseline Initiative (13+ policies)
 - Deployment instructions for management groups
 - Validation and testing procedures
