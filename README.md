@@ -10,6 +10,7 @@ This enablement package provides enterprise-ready guidance for deploying and man
 
 - **[Start Here: Documentation Hub](docs/README.md)** - Main documentation landing page
 - **[Azure Policy Guide](docs/Azure-Policy-Guide.md)** - Governance and compliance policies
+- **[Authentication Implementation Guide](docs/AKS-Authentication-Implementation-Guide.md)** - Enable Entra ID and Azure RBAC
 - **[Private AKS Deployment](docs/SOP-provision-private-aks-cluster.md)** - Deploy new private clusters
 - **[Migration SOP](docs/SOP-workload-migration.md)** - Migrate workloads to private AKS
 - **[Upgrade Playbook](docs/AKS-Upgrade-Playbook.md)** - Post-migration operations
@@ -29,7 +30,20 @@ Comprehensive Azure Policy definitions to enforce private AKS clusters and secur
 - Deployment instructions for management groups
 - Validation and testing procedures
 
-### 2. Migration Standard Operating Procedures
+### 2. AKS Authentication Implementation Guide
+**File**: [`docs/AKS-Authentication-Implementation-Guide.md`](docs/AKS-Authentication-Implementation-Guide.md)
+
+Step-by-step guide for modernizing AKS authentication with Microsoft Entra ID and Azure RBAC.
+
+**Includes**:
+- Enable Microsoft Entra ID authentication
+- Enable Azure RBAC for Kubernetes authorization
+- Disable local accounts
+- Configure workload identity for pods
+- Role assignment strategies (admin, reader, namespace-scoped)
+- Certificate rotation and emergency access procedures
+
+### 3. Migration Standard Operating Procedures
 **Files**: 
 - [`docs/SOP-workload-migration.md`](docs/SOP-workload-migration.md)
 - [`docs/SOP-provision-private-aks-cluster.md`](docs/SOP-provision-private-aks-cluster.md)
@@ -43,7 +57,7 @@ Detailed step-by-step procedures for migrating production workloads from public 
 - Rollback procedures
 - Validation and health checks
 
-### 3. AKS Upgrade Playbook
+### 4. AKS Upgrade Playbook
 **File**: [`docs/AKS-Upgrade-Playbook.md`](docs/AKS-Upgrade-Playbook.md)
 
 Post-migration operational guide for Kubernetes version upgrades and cluster maintenance.
@@ -61,6 +75,9 @@ Post-migration operational guide for Kubernetes version upgrades and cluster mai
 
 ### For Policy Deployment
 Start with the **[Azure Policy Guide](docs/Azure-Policy-Guide.md)** to establish governance before deploying clusters.
+
+### For Authentication Configuration
+Follow the **[Authentication Implementation Guide](docs/AKS-Authentication-Implementation-Guide.md)** to enable Entra ID and Azure RBAC.
 
 ### For New Private AKS Deployment
 Follow the **[Private AKS Deployment SOP](docs/SOP-provision-private-aks-cluster.md)** for hub-spoke architecture setup.
@@ -98,11 +115,12 @@ This guidance implements a secure hub-spoke network architecture:
 
 ```
 docs/
-├── README.md                              # Documentation hub
-├── Azure-Policy-Guide.md                  # Governance policies
-├── SOP-workload-migration.md              # Migration procedures
-├── SOP-provision-private-aks-cluster.md   # Private AKS deployment
-└── AKS-Upgrade-Playbook.md                # Upgrade and maintenance
+├── README.md                                    # Documentation hub
+├── Azure-Policy-Guide.md                        # Governance policies
+├── AKS-Authentication-Implementation-Guide.md   # Authentication modernization
+├── SOP-workload-migration.md                    # Migration procedures
+├── SOP-provision-private-aks-cluster.md         # Private AKS deployment
+└── AKS-Upgrade-Playbook.md                      # Upgrade and maintenance
 ```
 
 ---
@@ -110,6 +128,7 @@ docs/
 ## 🔐 Security Highlights
 
 - ✅ Private AKS clusters with private API endpoints only
+- ✅ Microsoft Entra ID authentication with Azure RBAC
 - ✅ Private endpoints for ACR and Key Vault
 - ✅ Workload identity for Azure service authentication
 - ✅ Azure Policy enforcement for compliance
